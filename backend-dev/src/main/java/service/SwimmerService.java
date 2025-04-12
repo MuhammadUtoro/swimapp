@@ -3,6 +3,7 @@ package service;
 import dto.SwimmerDTO;
 import entity.*;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.ws.rs.NotFoundException;
 
 import java.util.List;
 import java.util.Objects;
@@ -28,6 +29,35 @@ public class SwimmerService {
             return null;
         }
 
+        return toDTO(swimmer);
+    }
+
+    // Create swimmer
+    public SwimmerDTO createSwimmerDTO(SwimmerDTO swimmerDTO) {
+
+        // Fetch level, course, and email according to their name
+        Level level = Level.find("levelName", swimmerDTO.levelName()).firstResult();
+        Course course = Course.find("courseName", swimmerDTO.courseName()).firstResult();
+        User parentEmail = User.find("userEmail", swimmerDTO.parentEmail()).firstResult();
+
+        // Check if any of the data exist
+        if (level == null || course == null || parentEmail == null) {
+            throw new NotFoundException("Level, Course, or Parent Email does not exist!");
+        }
+
+        // If found, then we create a new swimmer entity
+        Swimmer swimmer = new Swimmer();
+
+        swimmer.setLastName(swimmerDTO.firstName());
+        swimmer.setFirstName(swimmerDTO.lastName());
+        swimmer.setLevelId(level.id);
+        swimmer.setCourseId(course.id);
+        swimmer.setParentId(parentEmail.id);
+
+        // Persist the new swimmer
+        swimmer.persist();
+
+        // Return DTO
         return toDTO(swimmer);
     }
 
