@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import dto.LevelDTO;
+import entity.Level;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
@@ -15,5 +16,10 @@ public class LevelService {
         .stream()
         .map(this::toDTO)
         .collect(Collectors.toList());
+    }
+
+    // Helper method to convert from entity to DTO
+    private LevelDTO toDTO(Level level) {
+        return new LevelDTO(level);
     }
 }

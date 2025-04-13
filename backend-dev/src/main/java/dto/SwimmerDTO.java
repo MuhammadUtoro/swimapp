@@ -8,7 +8,7 @@ import java.util.List;
 
 public record SwimmerDTO(
         String swimmerId,
-        @NotBlank(message = "Field be empty or blank!")
+        @NotBlank(message = "Field cannot be empty or blank!")
         String lastName,
         @NotBlank(message = "Field cannot be empty or blank!")
         String firstName,
