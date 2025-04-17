@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
+import { UserComponent } from './components/user/user.component';
 
 export const routes: Routes = [
   {
@@ -28,5 +29,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/login/login.component').then((m) => LoginComponent),
     title: 'Login',
+  },
+  {
+    path: 'users',
+    loadComponent: () =>
+      import('./components/user/user.component').then((m) => UserComponent),
+    title: 'Users',
   },
 ];
