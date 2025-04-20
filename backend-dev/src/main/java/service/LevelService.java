@@ -18,6 +18,19 @@ public class LevelService {
         .collect(Collectors.toList());
     }
 
+    // For post endpoint
+    public LevelDTO addLevel(LevelDTO levelDTO) {
+
+        // Create a new Level entity from DTO
+        Level level = new Level(levelDTO);
+
+        // Persist into database
+        level.persist();
+
+        // Return DTO (make it consistent)
+        return new LevelDTO(level);
+    }
+
     // Helper method to convert from entity to DTO
     private LevelDTO toDTO(Level level) {
         return new LevelDTO(level);

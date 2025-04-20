@@ -5,6 +5,8 @@ import io.quarkus.mongodb.panache.common.MongoEntity;
 
 import java.util.List;
 
+import dto.LevelDTO;
+
 @MongoEntity
 public class Level extends PanacheMongoEntity {
 
@@ -27,5 +29,10 @@ public class Level extends PanacheMongoEntity {
         this.levelName = levelName;
     }
 
+    public Level(LevelDTO levelDTO) {
+        this.levelName = levelDTO.levelName();
+        this.requirements = levelDTO.requirements();
+    }
 
+    public Level() {}
 }

@@ -45,11 +45,10 @@ public class LoginResource {
         // If success, we generate token
         User.Role userRole = user.getRole();
         String token = TokenGenerator.generateToken(
-                "http://localhost:8080",
+                "http://localhost:8081",
                 user.getUserEmail(),
                 userRole
         );
-
         return Response.status(Response.Status.OK).entity(Map.of("token", token)).build();
     }
 }
