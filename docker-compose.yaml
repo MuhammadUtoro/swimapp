@@ -1,0 +1,23 @@
+services:
+  backend:
+    image: backend-app
+    container_name: backend-container
+    build:
+      context: ./backend-dev
+      dockerfile: src/main/docker/Dockerfile.jvm
+    ports:
+      - "8081:8081"
+    environment:
+      - QUARKUS_PROFILE=prod
+      - QUARKUS_MONGODB_CONNECTION_STRING=${MONGODB_CONNECTION_STRING}
+      - QUARKUS_MONGODB_DATABASE=swimapp
+
+  frontend:
+    image: frontend-app
+    container_name: frontend-container
+    build:
+      context: ./frontend-dev
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
