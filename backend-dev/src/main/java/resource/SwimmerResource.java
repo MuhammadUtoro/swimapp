@@ -19,7 +19,7 @@ public class SwimmerResource {
     SwimmerService swimmerService;
 
     @GET
-    @RolesAllowed({"ADMIN", "TRAINER"})
+    // @RolesAllowed({"ADMIN", "TRAINER"})
     public Response getAllSwimmers() {
 
         List<SwimmerDTO> swimmerDTOS = swimmerService.getAllSwimmers();
@@ -27,9 +27,17 @@ public class SwimmerResource {
         return Response.status(Response.Status.OK).entity(swimmerDTOS).build();
     }
 
+    @POST
+    // @RolesAllowed("ADMIN")
+    public Response addSwimmer(SwimmerDTO swimmerDTO) {
+        SwimmerDTO swimmerDTOs = swimmerService.createSwimmerDTO(swimmerDTO);
+
+        return Response.status(Response.Status.CREATED).entity(swimmerDTO).build();
+    }
+
    @GET
    @Path("/{swimmerId}")
-   @RolesAllowed({"ADMIN", "TRAINER"})
+//    @RolesAllowed({"ADMIN", "TRAINER"})
    public Response getSwimmerById(@PathParam("swimmerId") String swimmerId) {
 
         SwimmerDTO swimmerDTO = swimmerService.getSwimmerById(swimmerId);

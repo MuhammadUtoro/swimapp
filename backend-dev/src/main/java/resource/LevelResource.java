@@ -2,8 +2,6 @@ package resource;
 
 import java.util.List;
 
-import com.arjuna.ats.internal.arjuna.objectstore.jdbc.drivers.ibm_driver;
-
 import dto.LevelDTO;
 import entity.Level;
 import jakarta.annotation.security.RolesAllowed;
@@ -39,7 +37,7 @@ public class LevelResource {
 
     @GET
     @Path("/{levelId}")
-    @RolesAllowed("ADMIN")
+    // @RolesAllowed("ADMIN")
     public Response getLevelById(@PathParam("levelId") String levelId) {
         LevelDTO levelDTO = levelService.getLevelById(levelId);
 
@@ -51,7 +49,7 @@ public class LevelResource {
     }
 
     @POST
-    @RolesAllowed("ADMIN")
+    // @RolesAllowed("ADMIN")
     public Response addLevel(LevelDTO levelDTO) {
 
         LevelDTO levelDTOs = levelService.addLevel(levelDTO);
@@ -61,7 +59,7 @@ public class LevelResource {
 
     @PATCH
     @Path("/{levelId}")
-    @RolesAllowed("ADMIN")
+    // @RolesAllowed("ADMIN")
     public Response updateLevel(@PathParam("levelId") String levelId, LevelDTO levelDTO) {
         Level updatedLevel = levelService.updateLevel(levelId, levelDTO);
 
@@ -70,7 +68,7 @@ public class LevelResource {
 
     @DELETE
     @Path("/{levelId}")
-    @RolesAllowed("ADMIN")
+    // @RolesAllowed("ADMIN")
     public Response deleteUser(@PathParam("levelId") String levelId) {
         levelService.deleteLevel(levelId);
 

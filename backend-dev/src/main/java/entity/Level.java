@@ -4,11 +4,14 @@ import io.quarkus.mongodb.panache.PanacheMongoEntity;
 import io.quarkus.mongodb.panache.common.MongoEntity;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import dto.LevelDTO;
 
 @MongoEntity
 public class Level extends PanacheMongoEntity {
+
+    public Level() {}
 
     private String levelName;
     private List<String> requirements;
@@ -34,5 +37,15 @@ public class Level extends PanacheMongoEntity {
         this.requirements = levelDTO.requirements();
     }
 
-    public Level() {}
+    public void updateLevelFromDTO(LevelDTO updatedLevelDTO) {
+       updateFieldIfNotNull(updatedLevelDTO.levelName(), this::setLevelName); 
+       updateFieldIfNotNull(updatedLevelDTO.requirements(), this::setRequirements);
+    }
+
+    // Helper method to update field if the value is not null
+    private <T> void updateFieldIfNotNull(T value, Consumer<T> setter) {
+        if (value != null) {
+            setter.accept(value);
+        }
+    }
 }

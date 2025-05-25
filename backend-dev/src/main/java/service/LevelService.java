@@ -57,6 +57,9 @@ public class LevelService {
         }
 
         // Update the field
+        level.updateLevelFromDTO(updatedLevelDTO);
+        
+        // Persist to database
         level.update();
 
         // return Level entity
