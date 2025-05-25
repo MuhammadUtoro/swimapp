@@ -23,7 +23,7 @@ public class LevelResource {
     LevelService levelService;
 
     @GET
-    // @RolesAllowed("ADMIN")
+    @RolesAllowed("ADMIN")
     public Response getAllLevels() {
 
         List<LevelDTO> levelDTOs = levelService.getAllLevels();
@@ -32,7 +32,7 @@ public class LevelResource {
     }
 
     @POST
-    // @RolesAllowed("ADMIN")
+    @RolesAllowed("ADMIN")
     public Response addLevel(LevelDTO levelDTO) {
 
         LevelDTO levelDTOs = levelService.addLevel(levelDTO);
