@@ -1,9 +1,9 @@
-i# Stage 1: Build the Angular app
+# Stage 1: Build the Angular app
 FROM node:18 AS build
 WORKDIR /app
 
 # Copy package files and install dependencies
-COPY package.json package-lock.json ./
+COPY package.json package-lock.json 
 RUN npm install
 
 # Copy the entire frontend app and build it

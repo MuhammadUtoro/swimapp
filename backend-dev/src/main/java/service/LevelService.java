@@ -3,9 +3,13 @@ package service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.bson.types.ObjectId;
+
 import dto.LevelDTO;
 import entity.Level;
+import io.netty.util.internal.StringUtil;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
 public class LevelService {
@@ -16,6 +20,17 @@ public class LevelService {
         .stream()
         .map(this::toDTO)
         .collect(Collectors.toList());
+    }
+
+    // For get by Id
+    public LevelDTO getLevelById(String levelId) {
+        Level level = Level.findById(new ObjectId(levelId));
+        
+        if (level == null) {
+            return null;
+        }
+
+        return new LevelDTO(level);
     }
 
     // For post endpoint
@@ -29,6 +44,36 @@ public class LevelService {
 
         // Return DTO (make it consistent)
         return new LevelDTO(level);
+    }
+
+    // for patch endpoint
+    public Level updateLevel(String levelId, LevelDTO updatedLevelDTO) {
+
+        // Find the level
+        Level level = Level.findById(new ObjectId(levelId));
+
+        if (level == null) {
+            throw new NotFoundException("Level not found!");
+        }
+
+        // Update the field
+        level.update();
+
+        // return Level entity
+        return level;
+
+    }
+
+    // For delete endpoint
+    public void deleteLevel(String levelId) {
+
+        Level level = Level.findById(new ObjectId(levelId));
+
+        if(level == null) {
+            throw new NotFoundException();
+        }
+
+        level.delete();
     }
 
     // Helper method to convert from entity to DTO
