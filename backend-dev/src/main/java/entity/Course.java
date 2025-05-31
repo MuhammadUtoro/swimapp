@@ -4,6 +4,8 @@ import io.quarkus.mongodb.panache.PanacheMongoEntity;
 import io.quarkus.mongodb.panache.common.MongoEntity;
 import org.bson.types.ObjectId;
 
+import dto.CourseDTO;
+
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
@@ -46,6 +48,13 @@ public class Course extends PanacheMongoEntity {
 
     public void setTrainerIds(List<ObjectId> trainerIds) {
         this.trainerIds = trainerIds;
+    }
+
+    public Course(CourseDTO courseDTO) {
+        this.courseName = courseDTO.courseName();
+        this.courseDay = courseDTO.courseDay();
+        this.courseTime = courseDTO.courseTime();
+        this.trainerIds = courseDTO.trainerIds();
     }
 
 }

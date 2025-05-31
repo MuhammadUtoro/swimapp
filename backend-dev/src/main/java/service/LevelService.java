@@ -7,7 +7,6 @@ import org.bson.types.ObjectId;
 
 import dto.LevelDTO;
 import entity.Level;
-import io.netty.util.internal.StringUtil;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.NotFoundException;
 
