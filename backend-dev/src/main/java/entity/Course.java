@@ -9,6 +9,7 @@ import dto.CourseDTO;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.function.Consumer;
 
 @MongoEntity
 public class Course extends PanacheMongoEntity {
@@ -55,6 +56,20 @@ public class Course extends PanacheMongoEntity {
         this.courseDay = courseDTO.courseDay();
         this.courseTime = courseDTO.courseTime();
         this.trainerIds = courseDTO.trainerIds();
+    }
+
+    public void updateCourseFromDTO(CourseDTO updatedCourseDTO) {
+        updateFieldIfNotNull(updatedCourseDTO.courseName(), this::setCourseName);
+        updateFieldIfNotNull(updatedCourseDTO.courseDay(), this::setCourseDay);
+        updateFieldIfNotNull(updatedCourseDTO.courseTime(), this::setCourseTime);
+        updateFieldIfNotNull(updatedCourseDTO.trainerIds(), this::setTrainerIds);
+    }
+
+    // Helper method to update field if the value is not null
+    private <T> void updateFieldIfNotNull(T value, Consumer<T> setter) {
+        if (value != null) {
+            setter.accept(value);
+        }
     }
 
 }

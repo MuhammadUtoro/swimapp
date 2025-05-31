@@ -54,7 +54,7 @@ public class LevelResource {
 
         LevelDTO levelDTOs = levelService.addLevel(levelDTO);
 
-        return Response.status(Response.Status.CREATED).entity(levelDTO).build();
+        return Response.status(Response.Status.CREATED).entity(levelDTOs).build();
     }
 
     @PATCH
