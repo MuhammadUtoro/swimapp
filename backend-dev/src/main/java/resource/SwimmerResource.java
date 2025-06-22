@@ -32,7 +32,7 @@ public class SwimmerResource {
     public Response addSwimmer(SwimmerDTO swimmerDTO) {
         SwimmerDTO swimmerDTOs = swimmerService.createSwimmerDTO(swimmerDTO);
 
-        return Response.status(Response.Status.CREATED).entity(swimmerDTO).build();
+        return Response.status(Response.Status.CREATED).entity(swimmerDTOs).build();
     }
 
    @GET
@@ -42,6 +42,10 @@ public class SwimmerResource {
 
         SwimmerDTO swimmerDTO = swimmerService.getSwimmerById(swimmerId);
 
-       return Response.status(Response.Status.NOT_FOUND).entity("User not found!").build();
+        if (swimmerDTO == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        return Response.status(Response.Status.OK).entity(swimmerDTO).build();
    }
 }

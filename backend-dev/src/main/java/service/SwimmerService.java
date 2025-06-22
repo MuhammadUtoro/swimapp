@@ -5,9 +5,12 @@ import entity.*;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.NotFoundException;
 
+import java.time.LocalTime;
 import java.util.List;
-import java.util.Objects;
+// import java.util.Objects;
 import java.util.stream.Collectors;
+
+import org.bson.types.ObjectId;
 
 @ApplicationScoped
 public class SwimmerService {
@@ -23,7 +26,7 @@ public class SwimmerService {
     // Get swimmer by ID
     public SwimmerDTO getSwimmerById(String swimmerId) {
 
-        Swimmer swimmer = Swimmer.findById(swimmerId);
+        Swimmer swimmer = Swimmer.findById(new ObjectId(swimmerId));
 
         if (swimmer == null) {
             return null;
@@ -37,8 +40,13 @@ public class SwimmerService {
 
         // Fetch level, course, and email according to their name
         Level level = Level.find("levelName", swimmerDTO.levelName()).firstResult();
-        Course course = Course.find("courseName", swimmerDTO.courseName()).firstResult();
         User parentEmail = User.find("userEmail", swimmerDTO.parentEmail()).firstResult();
+        Course course = Course.find(
+            "courseName = ?1 and courseDay = ?2 and courseTime = ?3",
+            swimmerDTO.courseName(),
+            swimmerDTO.courseDay(),
+            swimmerDTO.courseTime()
+        ).firstResult();
 
         // Check if any of the data exist
         if (level == null || course == null || parentEmail == null) {
@@ -64,7 +72,7 @@ public class SwimmerService {
     // Helper method to convert entity to DTO
     private SwimmerDTO toDTO(Swimmer swimmer) {
         // Fetch Level
-        final String levelName;
+        String levelName = null;
         if (swimmer.getLevelId() != null) {
             Level level = Level.findById(swimmer.getLevelId());
             levelName = (level != null) ? level.getLevelName() : null;
@@ -73,14 +81,11 @@ public class SwimmerService {
         }
 
         // Fetch Course
-        final String courseName;
+        Course course = null;
         if (swimmer.getCourseId() != null) {
-            Course course = Course.findById(swimmer.getCourseId());
-            courseName = (course != null) ? course.getCourseName() : null;
-        } else {
-            courseName = null;
+            course = Course.findById(swimmer.getCourseId());
         }
-
+        
         // Fetch Parent Email
         final String parentEmail;
         if (swimmer.getParentId() != null) {
@@ -91,14 +96,14 @@ public class SwimmerService {
         }
 
         // Fetch comments
-        final List<String> comments = swimmer.getComments().stream()
-                .map(commentId -> {
-                    Comment comment = Comment.findById(commentId);
-                    return (comment != null) ? comment.getText() : null;
-                })
-                .filter(Objects::nonNull)
-                .toList();
+        // final List<String> comments = swimmer.getComments().stream()
+        //         .map(commentId -> {
+        //             Comment comment = Comment.findById(commentId);
+        //             return (comment != null) ? comment.getText() : null;
+        //         })
+        //         .filter(Objects::nonNull)
+        //         .toList();
 
-        return new SwimmerDTO(swimmer, levelName, courseName, parentEmail, comments);
+        return new SwimmerDTO(swimmer, levelName, course, parentEmail);
     }
 }

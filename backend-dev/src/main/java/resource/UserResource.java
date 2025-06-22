@@ -20,7 +20,7 @@ public class UserResource {
     UserService userService;
 
     @GET
-    @RolesAllowed("ADMIN")
+    // @RolesAllowed("ADMIN")
     public Response getAllUsers() {
         List<UserDTO> userDTOs = userService.getAllUsers();
 

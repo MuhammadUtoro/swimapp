@@ -27,7 +27,7 @@ public class LevelResource {
     LevelService levelService;
 
     @GET
-    @RolesAllowed("ADMIN")
+   // @RolesAllowed("ADMIN")
     public Response getAllLevels() {
 
         List<LevelDTO> levelDTOs = levelService.getAllLevels();
