@@ -3,12 +3,21 @@ import { HomeComponent } from './components/home/home.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'landing',
     pathMatch: 'full',
+  },
+  {
+    path: 'landing',
+    loadComponent: () =>
+      import('./components/landing/landing.component').then(
+        (m) => LandingComponent
+      ),
+    title: 'Welcome Page',
   },
   {
     path: 'home',

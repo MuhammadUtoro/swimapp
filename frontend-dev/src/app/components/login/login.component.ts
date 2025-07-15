@@ -14,7 +14,7 @@ import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { response } from 'express';
 import { error } from 'console';
-import { LoginService, userLoginDTO } from '../../services/login.service';
+import { LoginService, UserLoginDTO } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -56,7 +56,7 @@ export class LoginComponent {
       return;
     }
 
-    const userLoginDTO: userLoginDTO = this.loginForm.value;
+    const userLoginDTO: UserLoginDTO = this.loginForm.value;
 
     this.loginService.userLogin(userLoginDTO).subscribe({
       next: (response) => {
