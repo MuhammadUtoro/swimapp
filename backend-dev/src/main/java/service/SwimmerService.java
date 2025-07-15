@@ -63,7 +63,7 @@ public class SwimmerService {
     }
 
     // For patch endpoint
-    public Swimmer updatSwimmer(String swimmerId, SwimmerDTO updatedSwimmerDTO) {
+    public Swimmer updateSwimmer(String swimmerId, SwimmerDTO updatedSwimmerDTO) {
 
         // Find the swimmer
         Swimmer swimmer = Swimmer.findById(new ObjectId(swimmerId));

@@ -81,7 +81,7 @@ public class Swimmer extends PanacheMongoEntity {
             if (level != null) {
                 this.setLevelId(level.id);
             }
-    }
+        }
 
         if (updatedSwimmerDTO.courseId() != null) {
             this.setCourseId(new ObjectId(updatedSwimmerDTO.courseId()));
@@ -92,7 +92,7 @@ public class Swimmer extends PanacheMongoEntity {
             if (parent != null) {
                 this.setParentId(parent.id);
             }
-    }
+        }
     }
 
     // Helper method to update a field if the value is not zero

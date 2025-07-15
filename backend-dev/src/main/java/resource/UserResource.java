@@ -57,5 +57,6 @@ public class UserResource {
 
         userService.deleteUser(userId);
         return Response.ok("User successfully deleted!").build();
+
     }
 }
