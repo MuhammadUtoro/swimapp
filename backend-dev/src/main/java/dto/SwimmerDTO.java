@@ -1,10 +1,11 @@
 package dto;
 
 import java.time.DayOfWeek;
-import java.time.LocalTime;
 
 import entity.Course;
+import entity.Level;
 import entity.Swimmer;
+import entity.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
@@ -19,24 +20,26 @@ public record SwimmerDTO(
         @NotBlank(message = "Field cannot be empty or blank!")
         String levelName,
         @NotBlank(message = "Field cannot be empty or blank!")
+        String courseId,
         String courseName,
-        DayOfWeek courseDay,
+        DayOfWeek courseDay, 
         String courseTime,
         @Email
         String parentEmail
         // List<String> comments
 
 ) {
-    public SwimmerDTO(Swimmer swimmer, String levelName, Course course, String parentEmail) {
+    public SwimmerDTO(Swimmer swimmer, Level level, Course course, User parent) {
         this(
                 swimmer.id != null ? swimmer.id.toHexString() : null,
                 swimmer.getLastName(),
                 swimmer.getFirstName(),
-                levelName,
-                course != null ? course.getCourseName() : null,
-                course != null ? course.getCourseDay() : null,
-                course != null ? course.getCourseTime().toString() : null,
-                parentEmail
+                level.getLevelName(),
+                course.id != null ? course.id.toHexString() : null,
+                course.getCourseName(),
+                course.getCourseDay(),
+                course.getCourseTime(),
+                parent.getUserEmail()
                 // comments
         );
     }

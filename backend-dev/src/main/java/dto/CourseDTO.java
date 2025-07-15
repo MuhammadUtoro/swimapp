@@ -2,9 +2,7 @@ package dto;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-// import java.util.List;
-
-// import org.bson.types.ObjectId;
+import java.time.format.DateTimeFormatter;
 
 import entity.Course;
 import jakarta.validation.constraints.NotBlank;
@@ -15,10 +13,13 @@ public record CourseDTO(
     String courseName,
     @NotBlank(message = "Field cannot be empty or blank!")
     DayOfWeek courseDay,
-    @NotBlank(message = "Field cannot be empty or blank!")
     String courseTime
     // List<ObjectId> trainerIds
 ) {
+
+    public LocalTime toLocalTime() {
+        return LocalTime.parse(courseTime, DateTimeFormatter.ofPattern("HH:mm"));
+    }
 
     public CourseDTO(Course course) {
         this(

@@ -1,7 +1,7 @@
 package resource;
 
 import dto.SwimmerDTO;
-import jakarta.annotation.security.RolesAllowed;
+import entity.Swimmer;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -47,5 +47,13 @@ public class SwimmerResource {
         }
 
         return Response.status(Response.Status.OK).entity(swimmerDTO).build();
+   }
+
+   @PATCH
+   @Path("/{swimmerId}")
+   public Response updateSwimmer(@PathParam("swimmerId") String swimmerId, SwimmerDTO swimmerDTO) {
+    Swimmer updatedSwimmerDTO = swimmerService.updatSwimmer(swimmerId, swimmerDTO);
+
+    return Response.status(Response.Status.OK).entity(new SwimmerDTO(updatedSwimmerDTO)).build();
    }
 }

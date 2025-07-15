@@ -4,7 +4,10 @@ import io.quarkus.mongodb.panache.PanacheMongoEntity;
 import io.quarkus.mongodb.panache.common.MongoEntity;
 import org.bson.types.ObjectId;
 
+import dto.SwimmerDTO;
+
 import java.util.List;
+import java.util.function.Consumer;
 
 @MongoEntity
 public class Swimmer extends PanacheMongoEntity {
@@ -67,4 +70,35 @@ public class Swimmer extends PanacheMongoEntity {
         this.comments = comments;
     }
 
+    public void updateSwimmerFromDTO(SwimmerDTO updatedSwimmerDTO) {
+
+        // Using the helper method
+        updateFieldIfNotNull(updatedSwimmerDTO.lastName(), this::setLastName);
+        updateFieldIfNotNull(updatedSwimmerDTO.firstName(), this::setFirstName);
+
+        if (updatedSwimmerDTO.levelName() != null) {
+            Level level = Level.find("levelName", updatedSwimmerDTO.levelName()).firstResult();
+            if (level != null) {
+                this.setLevelId(level.id);
+            }
+    }
+
+        if (updatedSwimmerDTO.courseId() != null) {
+            this.setCourseId(new ObjectId(updatedSwimmerDTO.courseId()));
+        }
+
+        if (updatedSwimmerDTO.parentEmail() != null) {
+            User parent = User.find("userEmail", updatedSwimmerDTO.parentEmail()).firstResult();
+            if (parent != null) {
+                this.setParentId(parent.id);
+            }
+    }
+    }
+
+    // Helper method to update a field if the value is not zero
+    private<T> void updateFieldIfNotNull (T value, Consumer<T> setter) {
+        if (value != null) {
+            setter.accept(value);
+        }
+    }
 }

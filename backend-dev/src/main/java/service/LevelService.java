@@ -45,7 +45,7 @@ public class LevelService {
         return new LevelDTO(level);
     }
 
-    // for patch endpoint
+    // For patch endpoint
     public Level updateLevel(String levelId, LevelDTO updatedLevelDTO) {
 
         // Find the level

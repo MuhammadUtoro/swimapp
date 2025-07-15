@@ -7,7 +7,7 @@ import io.quarkus.mongodb.panache.common.MongoEntity;
 import dto.CourseDTO;
 
 import java.time.DayOfWeek;
-import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 // import java.util.List;
 import java.util.function.Consumer;
 
@@ -58,9 +58,9 @@ public class Course extends PanacheMongoEntity {
     public Course(CourseDTO courseDTO) {
         this.courseName = courseDTO.courseName();
         this.courseDay = courseDTO.courseDay();
-        this.courseTime = courseDTO.courseTime();
+        this.courseTime = courseDTO.toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"));
         // this.trainerIds = courseDTO.trainerIds();
-    }
+}
 
     public void updateCourseFromDTO(CourseDTO updatedCourseDTO) {
         updateFieldIfNotNull(updatedCourseDTO.courseName(), this::setCourseName);
