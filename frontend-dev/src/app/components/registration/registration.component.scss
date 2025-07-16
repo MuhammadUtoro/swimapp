@@ -1,3 +1,10 @@
+.registration-container {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+}
 .registration-card {
   max-width: 400px;
   margin: 0 auto;

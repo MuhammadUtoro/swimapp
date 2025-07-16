@@ -1,1 +1,19 @@
-<p>level works!</p>
+<div class="level-container">
+  <h1>Levels</h1>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let level of levels">
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{ level.levelName }}</mat-panel-title>
+        <mat-panel-description>
+          {{ level.requirements.length }} Requirements
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-list>
+        <mat-list-item *ngFor="let req of level.requirements">
+          {{ req }}
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

@@ -4,6 +4,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { LevelComponent } from './components/level/level.component';
 
 export const routes: Routes = [
   {
@@ -44,5 +45,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/user/user.component').then((m) => UserComponent),
     title: 'Users',
+  },
+  {
+    path: 'levels',
+    loadComponent: () =>
+      import('./components/level/level.component').then((m) => LevelComponent),
+    title: 'Levels',
   },
 ];

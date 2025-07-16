@@ -1,0 +1,38 @@
+.landing-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+  padding: 16px;
+}
+
+.landing-card {
+  max-width: 600px;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.app-name {
+  color: #007bff;
+  font-weight: 600;
+}
+
+.landing-text {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}

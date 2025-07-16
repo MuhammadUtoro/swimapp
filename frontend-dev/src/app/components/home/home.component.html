@@ -1,37 +1,39 @@
-<mat-toolbar>
-  <button mat-icon-button class="menu-button" aria-label="menu-button">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>Swim App</span>
-  <span class="spacer"></span>
+<div class="home-container">
+  <mat-toolbar class="toolbar-container">
+    <button mat-icon-button class="menu-button" aria-label="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Swim App</span>
+    <span class="spacer"></span>
 
-  <a mat-button routerLink="/login">
-    <mat-icon>login</mat-icon>
-    <span>Login</span>
-  </a>
+    <a mat-button routerLink="/login">
+      <mat-icon>login</mat-icon>
+      <span>Login</span>
+    </a>
 
-  <a mat-button routerLink="/register">
-    <mat-icon>how_to_register</mat-icon>
-    <span>Register</span>
-  </a>
-</mat-toolbar>
+    <a mat-button routerLink="/register">
+      <mat-icon>how_to_register</mat-icon>
+      <span>Register</span>
+    </a>
+  </mat-toolbar>
 
-<div class="grid-container">
-  <h1 class="home-title">This is home</h1>
-  <mat-grid-list cols="2" rowHeight="250">
-    @for (card of cards | async; track card) {
-    <mat-grid-tile [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="home-grid">
-        <mat-card-header>
-          <mat-card-title>
-            {{ card.title }}
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="card-content">
-          <h3>This should be the content</h3>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-    }
-  </mat-grid-list>
+  <div class="grid-container">
+    <h1 class="home-title">This is home</h1>
+    <mat-grid-list cols="2" rowHeight="250">
+      @for (card of cards | async; track card) {
+      <mat-grid-tile [colspan]="card.cols" [rowspan]="card.rows">
+        <mat-card class="home-grid">
+          <mat-card-header>
+            <mat-card-title>
+              {{ card.title }}
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="card-content">
+            <h3>This should be the content</h3>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      }
+    </mat-grid-list>
+  </div>
 </div>

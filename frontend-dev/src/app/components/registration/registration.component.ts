@@ -18,6 +18,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { error } from 'console';
+
 @Component({
   selector: 'app-registration',
   imports: [

@@ -1,10 +1,24 @@
-<h1>This is going to be your welcome page</h1>
+<div class="landing-container">
+  <mat-card class="landing-card">
+    <mat-card-header>
+      <mat-card-title>
+        <h1>
+          Welcome to <span class="app-name">SwimApp</span>
+        </h1></mat-card-title
+      >
+      <mat-card-subtitle
+        >Track your swimming progress with us!</mat-card-subtitle
+      >
+    </mat-card-header>
+  </mat-card>
 
-<h2>It is for everyone!</h2>
-
-<p>
-  To go to the home page, you can click <a [routerLink]="['/home']">here</a>. If
-  you don't have account you can try to
-  <a [routerLink]="['/register']">register</a> or you can just
-  <a [routerLink]="['/login']">login</a>, if you already have an account!
-</p>
+  <mat-card-content>
+    <p class="landing-text">
+      To to home page, you can click
+      <a [routerLink]="['/home']" class="link">here</a>.<br />
+      If you don't have an account, you can
+      <a [routerLink]="['/register']" class="link">register</a>, or if you
+      already have one just <a [routerLink]="['/login']" class="link">login</a>!
+    </p>
+  </mat-card-content>
+</div>

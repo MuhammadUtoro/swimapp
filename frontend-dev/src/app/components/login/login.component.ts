@@ -68,7 +68,7 @@ export class LoginComponent {
           });
 
           // Redirect to user's page
-          this.router.navigate(['users']);
+          this.router.navigate(['levels']);
         } else {
           this.snackBar.open('Login failed!', 'Close', {
             duration: 1500,

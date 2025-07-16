@@ -1,5 +1,13 @@
+.login-container {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+}
 .login-card {
   max-width: 400px;
+  width: 100%;
   margin: 0 auto;
   padding: 20px;
 }
@@ -19,12 +27,11 @@
 .home-link {
   font-size: 12px;
   text-decoration: none;
-  color: #007bff;
+  color: #14385e;
 }
 
-.forgot-pass-link,
-.register-link,
-.home-link :hover {
-  text-decoration: underline;
-  cursor: pointer;
+.forgot-pass-link:hover,
+.register-link:hover,
+.home-link:hover {
+  color: rgb(86, 86, 243);
 }
