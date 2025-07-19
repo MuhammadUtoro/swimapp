@@ -2,37 +2,44 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
-  background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
-  padding: 16px;
+  height: 100vh; /* Use viewport height for full page centering */
+  background-color: var(--md-sys-color-background); /* Use theme background */
+  padding: 2rem;
+  box-sizing: border-box; /* Prevent padding overflow */
 }
 
 .landing-card {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   max-width: 600px;
-  padding: 24px;
-  border-radius: 16px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  padding: 2rem; /* More padding for spacious feel */
+  background-color: var(--md-sys-color-background);
+  border-radius: 12px;
+  box-sizing: border-box;
+  text-align: center; /* Center-align text inside card */
 }
 
 .app-name {
-  color: #007bff;
-  font-weight: 600;
+  color: var(--md-sys-color-primary, #0077b6); /* Use CSS var with fallback */
 }
 
 .landing-text {
-  font-size: 16px;
-  color: #333;
-  line-height: 1.6;
+  font-size: 1.1rem;
+  color: var(
+    --md-sys-color-on-background,
+    #343a40
+  ); /* Use CSS var with fallback */
+  margin-top: 1rem;
 }
 
 .link {
-  color: #007bff;
+  color: var(--md-sys-color-primary, #0077b6);
+  font-weight: 600;
   text-decoration: none;
-  font-weight: 500;
 }
 
 .link:hover {
-  text-decoration: underline;
-  color: #0056b3;
+  color: var(--md-sys-color-secondary, #90e0ef);
 }

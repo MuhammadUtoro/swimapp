@@ -1,5 +1,5 @@
 <div class="landing-container">
-  <mat-card class="landing-card">
+  <mat-card class="landing-card mat-elevation-z4">
     <mat-card-header>
       <mat-card-title>
         <h1>
@@ -10,15 +10,12 @@
         >Track your swimming progress with us!</mat-card-subtitle
       >
     </mat-card-header>
+    <mat-card-content>
+      <p class="landing-text">
+        Don't have an account?
+        <a [routerLink]="['/register']" class="link">register</a> here<br />
+        or <a [routerLink]="['/login']" class="link">login</a>
+      </p>
+    </mat-card-content>
   </mat-card>
-
-  <mat-card-content>
-    <p class="landing-text">
-      To to home page, you can click
-      <a [routerLink]="['/home']" class="link">here</a>.<br />
-      If you don't have an account, you can
-      <a [routerLink]="['/register']" class="link">register</a>, or if you
-      already have one just <a [routerLink]="['/login']" class="link">login</a>!
-    </p>
-  </mat-card-content>
 </div>

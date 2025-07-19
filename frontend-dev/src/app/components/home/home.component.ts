@@ -8,6 +8,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { map } from 'rxjs/operators';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +28,22 @@ import { map } from 'rxjs/operators';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
+  userRole: string | null = null;
   private breakPointObserver = inject(BreakpointObserver);
+
+  constructor(private loginService: LoginService) {}
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.setUserRole();
+    }, 0); // Helps ensure token is ready after login
+  }
+
+  setUserRole(): void {
+    const roles = this.loginService.getUserRoles();
+    this.userRole = roles.length > 0 ? roles[0] : null;
+    console.log('User role:', this.userRole);
+  }
 
   cards = this.breakPointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {

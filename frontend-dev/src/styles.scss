@@ -1,24 +1,28 @@
 @use "@angular/material" as mat;
 
 html {
+  color-scheme: light dark;
   @include mat.theme(
     (
-      color: (
-        theme-type: light,
-        primary: mat.$cyan-palette,
-        tertiary: mat.$magenta-palette,
-      ),
+      color: mat.$blue-palette,
+      // Primary color (closest to #0077b6)
       typography: Roboto,
       density: 0,
     )
   );
-} /* You can add global styles to this file, and also import other style files */
-
-html,
-body {
-  height: 100%;
 }
+
+:root {
+  --md-sys-color-tertiary: #90e0ef; /* Light aqua accent */
+  --md-sys-color-background: #f8f9fa; /* Light gray background */
+  --md-sys-color-on-background: #343a40; /* Dark gray text */
+}
+
+/* Apply background and text colors globally */
 body {
-  margin: 0;
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  height: 100%;
 }

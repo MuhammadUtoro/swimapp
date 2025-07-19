@@ -17,8 +17,15 @@
     </a>
   </mat-toolbar>
 
+  <div *ngIf="userRole">
+    <h1>Hello, {{ userRole | titlecase }}</h1>
+  </div>
+
+  <div *ngIf="!userRole">
+    <h1>Hello, Guest!</h1>
+  </div>
+
   <div class="grid-container">
-    <h1 class="home-title">This is home</h1>
     <mat-grid-list cols="2" rowHeight="250">
       @for (card of cards | async; track card) {
       <mat-grid-tile [colspan]="card.cols" [rowspan]="card.rows">
