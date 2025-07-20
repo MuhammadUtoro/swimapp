@@ -1,46 +1,58 @@
-<div class="home-container">
-  <mat-toolbar class="toolbar-container">
-    <button mat-icon-button class="menu-button" aria-label="menu-button">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Swim App</span>
-    <span class="spacer"></span>
+<mat-sidenav-container class="sidenav-container">
+  <!--Sidenav-->
+  <mat-sidenav #drawer class="sidenav" mode="side" opened>
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <ng-container *ngIf="userRole === 'ADMIN' || userRole === 'TRAINER'">
+        <!--For admin view-->
+        <h2>Admin Dashboard</h2>
+        <a mat-list-item [routerLink]="['/users']"> Manage Users </a>
+        <a mat-list-item [routerLink]="['/levels']"> Manage Levels </a>
+        <a mat-list-item [routerLink]="['/courses']"> Manage Courses </a>
+      </ng-container>
+      <ng-container *ngIf="userRole === 'PARENT'">
+        <a mat-list-item [routerLink]="['/swimmers']"> My swimmers </a>
+      </ng-container>
+    </mat-nav-list>
+  </mat-sidenav>
 
-    <a mat-button routerLink="/login">
-      <mat-icon>login</mat-icon>
-      <span>Login</span>
-    </a>
+  <!--Main content area using MatCard-->
+  <mat-sidenav-content>
+    <mat-toolbar mat-toolbar color="primary" class="toolbar">
+      <button
+        type="button"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        class="hide-desktop"
+        aria-label="Toggle sidenav"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="app-title"> Swim App </span>
+      <span class="spacer"></span>
+      <span> Hello, {{ userRole || "Guest" }} </span>
+    </mat-toolbar>
 
-    <a mat-button routerLink="/register">
-      <mat-icon>how_to_register</mat-icon>
-      <span>Register</span>
-    </a>
-  </mat-toolbar>
+    <!--Dashboard Content-->
+    <div class="dashboard-content">
+      <mat-card class="dashboard-card">
+        <mat-card-title>Numbers of swimmers</mat-card-title>
+        <mat-card-content>
+          <p>120</p>
+        </mat-card-content>
+      </mat-card>
 
-  <div *ngIf="userRole">
-    <h1>Hello, {{ userRole | titlecase }}</h1>
-  </div>
+      <mat-card class="dashboard-card">
+        <mat-card-title>Numbers of trainers</mat-card-title>
+        <mat-card-content>
+          <p>12</p>
+        </mat-card-content>
+      </mat-card>
 
-  <div *ngIf="!userRole">
-    <h1>Hello, Guest!</h1>
-  </div>
-
-  <div class="grid-container">
-    <mat-grid-list cols="2" rowHeight="250">
-      @for (card of cards | async; track card) {
-      <mat-grid-tile [colspan]="card.cols" [rowspan]="card.rows">
-        <mat-card class="home-grid">
-          <mat-card-header>
-            <mat-card-title>
-              {{ card.title }}
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="card-content">
-            <h3>This should be the content</h3>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-      }
-    </mat-grid-list>
-  </div>
-</div>
+      <mat-card class="dashboard-card">
+        <mat-card-title>Courses today</mat-card-title>
+        <mat-card-content><p>3</p></mat-card-content>
+      </mat-card>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

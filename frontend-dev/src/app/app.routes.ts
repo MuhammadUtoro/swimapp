@@ -5,6 +5,8 @@ import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { LevelComponent } from './components/level/level.component';
+import { authGuard } from './guards/auth.guard';
+import { CourseComponent } from './components/course/course.component';
 
 export const routes: Routes = [
   {
@@ -44,12 +46,26 @@ export const routes: Routes = [
     path: 'users',
     loadComponent: () =>
       import('./components/user/user.component').then((m) => UserComponent),
+    canActivate: [authGuard],
+    data: { roles: ['admin', 'trainer'] },
     title: 'Users',
   },
   {
     path: 'levels',
     loadComponent: () =>
       import('./components/level/level.component').then((m) => LevelComponent),
+    canActivate: [authGuard],
+    data: { roles: ['admin', 'trainer'] },
     title: 'Levels',
+  },
+  {
+    path: 'courses',
+    loadComponent: () =>
+      import('./components/course/course.component').then(
+        (m) => CourseComponent
+      ),
+    canActivate: [authGuard],
+    data: { roles: ['admin', 'trainer'] },
+    title: 'Courses',
   },
 ];

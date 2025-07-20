@@ -2,13 +2,15 @@ import { Component, inject } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterLink, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { map } from 'rxjs/operators';
 import { LoginService } from '../../services/login.service';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-home',
@@ -16,13 +18,14 @@ import { LoginService } from '../../services/login.service';
   imports: [
     CommonModule,
     MatToolbarModule,
+    MatSidenavModule,
     MatCardModule,
     MatIconModule,
     RouterModule,
     MatButtonModule,
     RouterLink,
-    AsyncPipe,
     MatGridListModule,
+    MatListModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
