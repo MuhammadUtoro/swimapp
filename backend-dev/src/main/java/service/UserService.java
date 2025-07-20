@@ -74,7 +74,7 @@ public class UserService {
 
         // Create User Entity from RegistrationDTO
         User user = new User(registrationDTO, hashedPassword);
-        user.setRole(User.Role.ADMIN);
+        user.setRole(User.Role.PARENT);
 
         // Persist to Database
         user.persist();
