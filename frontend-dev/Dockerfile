@@ -3,7 +3,7 @@ FROM node:18 AS build
 WORKDIR /app
 
 # Copy package files and install dependencies
-COPY package.json package-lock.json 
+COPY package.json package-lock.json ./
 RUN npm install
 
 # Copy the entire frontend app and build it
@@ -14,7 +14,7 @@ RUN npm run build -- --configuration production
 FROM nginx:alpine
 
 # Copy the build output from the build stage to Nginx's web directory
-COPY --from=build /app/dist/swimapp/browser /usr/share/nginx/html
+COPY --from=build /app/dist/frontend-dev/browser /usr/share/nginx/html
 
 # Expose port 80 for Nginx
 EXPOSE 80

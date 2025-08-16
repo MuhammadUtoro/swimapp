@@ -1,28 +1,18 @@
 @use "@angular/material" as mat;
+@use "./app/themes/anakiwa_theme-colors.scss";
+@use "./app/themes/aquamarine_theme-colors.scss";
 
 html {
-  color-scheme: light dark;
+  background: var(--mat-sys-surface);
+  font-family: "Montserrat";
   @include mat.theme(
     (
-      color: mat.$blue-palette,
-      // Primary color (closest to #0077b6)
-      typography: Roboto,
+      color: (
+        theme-type: light,
+        primary: anakiwa_theme-colors.$primary-palette,
+      ),
+      typography: Montserrat,
       density: 0,
     )
   );
-}
-
-:root {
-  --md-sys-color-tertiary: #90e0ef; /* Light aqua accent */
-  --md-sys-color-background: #f8f9fa; /* Light gray background */
-  --md-sys-color-on-background: #343a40; /* Dark gray text */
-}
-
-/* Apply background and text colors globally */
-body {
-  background-color: var(--md-sys-color-background);
-  color: var(--md-sys-color-on-background);
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  margin: 0;
-  height: 100%;
 }
