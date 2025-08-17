@@ -11,7 +11,9 @@ FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 
 # Copy the already built uber-jar from your backend target folder
+
 COPY target/swimapp-1.0.0-SNAPSHOT-runner.jar app.jar
+
 
 # Expose Quarkus default port
 EXPOSE 8081
