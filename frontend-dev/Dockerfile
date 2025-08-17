@@ -5,13 +5,14 @@ WORKDIR /app
 # Copy package files and install dependencies
 COPY package.json package-lock.json ./
 RUN npm install
+RUN npm install -g @angular/cli
 
 # Copy the entire frontend app and build it
 COPY . .
-RUN npm run build -- --configuration production
+RUN ng build --configuration=production
 
 # Stage 2: Serve the app using Nginx
-FROM nginx:alpine
+FROM nginx:latest
 
 # Copy the build output from the build stage to Nginx's web directory
 COPY --from=build /app/dist/frontend-dev/browser /usr/share/nginx/html
