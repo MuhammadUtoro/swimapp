@@ -13,7 +13,7 @@ export interface LevelDTO {
   providedIn: 'root',
 })
 export class LevelService {
-  levelUrl = 'http://localhost:8081/levels';
+  levelUrl = '192.168.0.175:8081/levels';
 
   constructor(
     private httpClient: HttpClient,

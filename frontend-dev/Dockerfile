@@ -15,10 +15,10 @@ RUN ng build --configuration=production
 FROM nginx:latest
 
 # Copy the build output from the build stage to Nginx's web directory
-COPY --from=build /app/dist/frontend-dev/browser /usr/share/nginx/html
+COPY --from=build /app/dist/frontend-dev /usr/share/nginx/html
 
 # Expose port 80 for Nginx
-EXPOSE 80
+EXPOSE 4200
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]

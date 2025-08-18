@@ -15,7 +15,7 @@ export interface UserDTO {
   providedIn: 'root',
 })
 export class UsersService {
-  userUrl = 'http://localhost:8081/users';
+  userUrl = '192.168.0.175:8081/users';
 
   // Constructor for Http Client
   constructor(
