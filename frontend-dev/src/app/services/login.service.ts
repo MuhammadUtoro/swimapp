@@ -20,7 +20,7 @@ export interface DecodedToken {
   providedIn: 'root',
 })
 export class LoginService {
-  loginUrl = '192.168.0.175:8081/login'; // must match the backend endpoint (quarkus)
+  loginUrl = 'http://192.168.0.175:8081/login'; // must match the backend endpoint (quarkus)
 
   constructor(
     private httpClient: HttpClient,

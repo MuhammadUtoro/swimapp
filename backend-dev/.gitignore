@@ -39,7 +39,7 @@ nb-configuration.xml
 # Local environment
 .env
 *.pem
-
+/keys/
 # Plugin directory
 /.quarkus/cli/plugins/
 # TLS Certificates

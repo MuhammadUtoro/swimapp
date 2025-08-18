@@ -14,7 +14,7 @@ export interface UserRegistrationDTO {
   providedIn: 'root',
 })
 export class RegistrationService {
-  registerUrl = '192.168.0.175:8081/register';
+  registerUrl = 'http://192.168.0.175:8081/register';
 
   // Constructor for HttpClient
   constructor(private httpClient: HttpClient) {}
